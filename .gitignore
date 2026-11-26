@@ -1,0 +1,11 @@
+node_modules/
+.next/
+.pglite-data/
+.vela-media/
+.env
+.env.local
+.env.*.local
+tsconfig.tsbuildinfo
+public.zip
+*.log
+.DS_Store

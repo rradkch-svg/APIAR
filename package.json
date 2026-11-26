@@ -1,0 +1,37 @@
+{
+  "name": "circle-ai-social",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --port 3000",
+    "build": "next build",
+    "start": "next start --port 3000",
+    "typecheck": "tsc --noEmit",
+    "db:init": "tsx src/lib/db/cli-init.ts",
+    "db:seed": "tsx db/seed.ts",
+    "test:e2e": "tsx scripts/verify-e2e.ts"
+  },
+  "dependencies": {
+    "@electric-sql/pglite": "^0.3.14",
+    "@google/genai": "^1.35.0",
+    "framer-motion": "^12.4.7",
+    "lucide-react": "^0.475.0",
+    "msedge-tts": "^2.1.1",
+    "next": "^15.2.4",
+    "pg": "^8.13.3",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-force-graph-2d": "^1.26.0",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.0.9",
+    "@types/node": "^22.13.5",
+    "@types/pg": "^8.11.11",
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
+    "tailwindcss": "^4.0.9",
+    "tsx": "^4.19.3",
+    "typescript": "^5.7.3"
+  }
+}

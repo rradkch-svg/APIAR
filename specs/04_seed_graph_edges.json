@@ -1,0 +1,434 @@
+[
+  {
+    "source_id": "duda",
+    "target_id": "leo",
+    "relation_type": "bestie",
+    "affinity": 85,
+    "friction": 0.1,
+    "gossip_trust": 0.75,
+    "shared_lore": "Parceiros de café e desabafo desde o 1º semestre."
+  },
+  {
+    "source_id": "leo",
+    "target_id": "duda",
+    "relation_type": "bestie",
+    "affinity": 88,
+    "friction": 0.08,
+    "gossip_trust": 0.6,
+    "shared_lore": "Léo já teve um crush nela e ainda tem um carinho protetor."
+  },
+  {
+    "source_id": "duda",
+    "target_id": "jade",
+    "relation_type": "rival",
+    "affinity": -65,
+    "friction": 0.85,
+    "gossip_trust": 0.05,
+    "shared_lore": "Duda não suporta o jeito passivo-agressivo da Jade."
+  },
+  {
+    "source_id": "jade",
+    "target_id": "duda",
+    "relation_type": "rival",
+    "affinity": -60,
+    "friction": 0.8,
+    "gossip_trust": 0.05,
+    "shared_lore": "Jade acha Duda grosseira e sem filtro."
+  },
+  {
+    "source_id": "duda",
+    "target_id": "vitor",
+    "relation_type": "rival",
+    "affinity": -75,
+    "friction": 0.9,
+    "gossip_trust": 0.0,
+    "shared_lore": "Duda adora desmontar os discursos de coach do Vitor nos comentários."
+  },
+  {
+    "source_id": "duda",
+    "target_id": "bia",
+    "relation_type": "frenemy",
+    "affinity": 20,
+    "friction": 0.55,
+    "gossip_trust": 0.3,
+    "shared_lore": "Zoa a fofoqueirice da Bia, mas sempre ouve as histórias."
+  },
+  {
+    "source_id": "theo",
+    "target_id": "sofia",
+    "relation_type": "ex",
+    "affinity": -20,
+    "friction": 0.7,
+    "gossip_trust": 0.1,
+    "shared_lore": "Terminaram há 6 meses; clima tenso sempre que comentam no mesmo post."
+  },
+  {
+    "source_id": "sofia",
+    "target_id": "theo",
+    "relation_type": "ex",
+    "affinity": 15,
+    "friction": 0.75,
+    "gossip_trust": 0.1,
+    "shared_lore": "Ainda tem ciúme velado quando Theo dá atenção a alguém novo."
+  },
+  {
+    "source_id": "theo",
+    "target_id": "caio",
+    "relation_type": "rival",
+    "affinity": -35,
+    "friction": 0.65,
+    "gossip_trust": 0.05,
+    "shared_lore": "Competem silenciosamente por status e atenção no campus."
+  },
+  {
+    "source_id": "caio",
+    "target_id": "theo",
+    "relation_type": "rival",
+    "affinity": -45,
+    "friction": 0.7,
+    "gossip_trust": 0.05,
+    "shared_lore": "Caio acha que o Theo se faz de bom moço."
+  },
+  {
+    "source_id": "theo",
+    "target_id": "leo",
+    "relation_type": "friend",
+    "affinity": 70,
+    "friction": 0.1,
+    "gossip_trust": 0.65,
+    "shared_lore": "Theo desabafa com Léo sobre a Sofia."
+  },
+  {
+    "source_id": "nina",
+    "target_id": "bruno",
+    "relation_type": "frenemy",
+    "affinity": 35,
+    "friction": 0.6,
+    "gossip_trust": 0.4,
+    "shared_lore": "Nina vive dando bronca no Bruno por atrasar tudo do centro acadêmico."
+  },
+  {
+    "source_id": "bruno",
+    "target_id": "nina",
+    "relation_type": "friend",
+    "affinity": 65,
+    "friction": 0.45,
+    "gossip_trust": 0.5,
+    "shared_lore": "Chama a Nina de 'chefa' pra irritar ela."
+  },
+  {
+    "source_id": "bruno",
+    "target_id": "igor",
+    "relation_type": "bestie",
+    "affinity": 80,
+    "friction": 0.35,
+    "gossip_trust": 0.8,
+    "shared_lore": "Dupla de festas; Bruno ainda deve uma caixa de som pro Igor."
+  },
+  {
+    "source_id": "igor",
+    "target_id": "bruno",
+    "relation_type": "bestie",
+    "affinity": 75,
+    "friction": 0.4,
+    "gossip_trust": 0.7,
+    "shared_lore": "Sabe que o Bruno quebrou a caixa de som e vive jogando indireta."
+  },
+  {
+    "source_id": "bia",
+    "target_id": "jade",
+    "relation_type": "bestie",
+    "affinity": 82,
+    "friction": 0.25,
+    "gossip_trust": 0.95,
+    "shared_lore": "Bia conta absolutamente tudo pra Jade em menos de 10 minutos."
+  },
+  {
+    "source_id": "jade",
+    "target_id": "bia",
+    "relation_type": "bestie",
+    "affinity": 74,
+    "friction": 0.3,
+    "gossip_trust": 0.85,
+    "shared_lore": "Melhores amigas, mas Jade às vezes acha que Bia exagera."
+  },
+  {
+    "source_id": "bia",
+    "target_id": "lara",
+    "relation_type": "rival",
+    "affinity": -55,
+    "friction": 0.75,
+    "gossip_trust": 0.05,
+    "shared_lore": "Disputam engajamento e patrocínios locais com sorrisos falsos."
+  },
+  {
+    "source_id": "lara",
+    "target_id": "bia",
+    "relation_type": "rival",
+    "affinity": -50,
+    "friction": 0.7,
+    "gossip_trust": 0.05,
+    "shared_lore": "Stalkeia a Bia por conta fake e finge indiferença."
+  },
+  {
+    "source_id": "bia",
+    "target_id": "teteu",
+    "relation_type": "ally",
+    "affinity": 60,
+    "friction": 0.3,
+    "gossip_trust": 0.85,
+    "shared_lore": "Trocam fofocas; Bia não sabe que Teteu é o dono do Spotted."
+  },
+  {
+    "source_id": "teteu",
+    "target_id": "bia",
+    "relation_type": "ally",
+    "affinity": 65,
+    "friction": 0.25,
+    "gossip_trust": 0.8,
+    "shared_lore": "Bia é a maior fonte de pauta pro Spotted anônimo do Teteu."
+  },
+  {
+    "source_id": "bia",
+    "target_id": "theo",
+    "relation_type": "friend",
+    "affinity": 55,
+    "friction": 0.2,
+    "gossip_trust": 0.65,
+    "shared_lore": "Bia ama shippar o Theo e investigar com quem ele tá falando."
+  },
+  {
+    "source_id": "enzo",
+    "target_id": "vitor",
+    "relation_type": "rival",
+    "affinity": -70,
+    "friction": 0.8,
+    "gossip_trust": 0.0,
+    "shared_lore": "Enzo tem fotos comprometedoras do Vitor numa festa."
+  },
+  {
+    "source_id": "vitor",
+    "target_id": "enzo",
+    "relation_type": "rival",
+    "affinity": -65,
+    "friction": 0.6,
+    "gossip_trust": 0.0,
+    "shared_lore": "Vitor tenta pagar de amigo do Enzo por medo das fotos vazarem."
+  },
+  {
+    "source_id": "enzo",
+    "target_id": "clara",
+    "relation_type": "crush",
+    "affinity": 90,
+    "friction": 0.05,
+    "gossip_trust": 0.8,
+    "shared_lore": "Enzo toma café todo dia lá só pra ver a Clara."
+  },
+  {
+    "source_id": "clara",
+    "target_id": "enzo",
+    "relation_type": "crush",
+    "affinity": 80,
+    "friction": 0.05,
+    "gossip_trust": 0.7,
+    "shared_lore": "Clara sabe do crush e dá sinais sutis esperando ele falar."
+  },
+  {
+    "source_id": "caio",
+    "target_id": "lara",
+    "relation_type": "secret_fling",
+    "affinity": 68,
+    "friction": 0.25,
+    "gossip_trust": 0.5,
+    "shared_lore": "Ficaram escondido numa festa; fingem mal se conhecer no feed."
+  },
+  {
+    "source_id": "lara",
+    "target_id": "caio",
+    "relation_type": "secret_fling",
+    "affinity": 62,
+    "friction": 0.3,
+    "gossip_trust": 0.45,
+    "shared_lore": "Tem medo de a Bia descobrir e usar isso contra ela."
+  },
+  {
+    "source_id": "camila",
+    "target_id": "vitor",
+    "relation_type": "rival",
+    "affinity": -50,
+    "friction": 0.88,
+    "gossip_trust": 0.05,
+    "shared_lore": "Camila adora refutar os textos de meritocracia do Vitor."
+  },
+  {
+    "source_id": "camila",
+    "target_id": "helena",
+    "relation_type": "friend",
+    "affinity": 72,
+    "friction": 0.4,
+    "gossip_trust": 0.5,
+    "shared_lore": "Debates de alto nível que ninguém mais na turma entende."
+  },
+  {
+    "source_id": "sofia",
+    "target_id": "jade",
+    "relation_type": "friend",
+    "affinity": 60,
+    "friction": 0.2,
+    "gossip_trust": 0.7,
+    "shared_lore": "Jade passa informações da Bia sobre o Theo pra Sofia."
+  },
+  {
+    "source_id": "jade",
+    "target_id": "sofia",
+    "relation_type": "friend",
+    "affinity": 65,
+    "friction": 0.15,
+    "gossip_trust": 0.85,
+    "shared_lore": "Conta pra Sofia qualquer rumor envolvendo o Theo."
+  },
+  {
+    "source_id": "gabs",
+    "target_id": "maya",
+    "relation_type": "crush",
+    "affinity": 92,
+    "friction": 0.15,
+    "gossip_trust": 0.7,
+    "shared_lore": "Gabs é apaixonado pela Maya e escreve músicas sobre ela."
+  },
+  {
+    "source_id": "maya",
+    "target_id": "gabs",
+    "relation_type": "friend",
+    "affinity": 65,
+    "friction": 0.2,
+    "gossip_trust": 0.6,
+    "shared_lore": "Gosta do Gabs como amigo, meio desconfiada das letras dele."
+  },
+  {
+    "source_id": "maya",
+    "target_id": "clara",
+    "relation_type": "bestie",
+    "affinity": 84,
+    "friction": 0.05,
+    "gossip_trust": 0.85,
+    "shared_lore": "Amigas de madrugada, trocam indicações de filmes e desabafos."
+  },
+  {
+    "source_id": "clara",
+    "target_id": "maya",
+    "relation_type": "bestie",
+    "affinity": 84,
+    "friction": 0.05,
+    "gossip_trust": 0.8,
+    "shared_lore": "Confiam uma na outra de olhos fechados."
+  },
+  {
+    "source_id": "gabs",
+    "target_id": "leo",
+    "relation_type": "bandmate",
+    "affinity": 78,
+    "friction": 0.15,
+    "gossip_trust": 0.65,
+    "shared_lore": "Tocam juntos de vez em quando."
+  },
+  {
+    "source_id": "igor",
+    "target_id": "bia",
+    "relation_type": "ally",
+    "affinity": 58,
+    "friction": 0.25,
+    "gossip_trust": 0.75,
+    "shared_lore": "Bia divulga as festas do Igor em troca de VIP e fofoca de camarote."
+  },
+  {
+    "source_id": "mel",
+    "target_id": "lucas",
+    "relation_type": "crush",
+    "affinity": 95,
+    "friction": 0.05,
+    "gossip_trust": 0.65,
+    "shared_lore": "Crush secreto há 8 meses; todo mundo percebe menos o Lucas."
+  },
+  {
+    "source_id": "lucas",
+    "target_id": "mel",
+    "relation_type": "bestie",
+    "affinity": 80,
+    "friction": 0.05,
+    "gossip_trust": 0.75,
+    "shared_lore": "Acha que a Mel é só a melhor parceira de projeto do mundo."
+  },
+  {
+    "source_id": "mel",
+    "target_id": "lara",
+    "relation_type": "friend",
+    "affinity": 60,
+    "friction": 0.2,
+    "gossip_trust": 0.55,
+    "shared_lore": "Faz templates de design pros posts da Lara."
+  },
+  {
+    "source_id": "lucas",
+    "target_id": "pedro",
+    "relation_type": "bestie",
+    "affinity": 85,
+    "friction": 0.2,
+    "gossip_trust": 0.8,
+    "shared_lore": "Jogam juntos até 4h da manhã; Pedro tenta abrir os olhos do Lucas sobre a Mel."
+  },
+  {
+    "source_id": "pedro",
+    "target_id": "lucas",
+    "relation_type": "bestie",
+    "affinity": 88,
+    "friction": 0.2,
+    "gossip_trust": 0.85,
+    "shared_lore": "Melhor amigo e jogador fixo da mesa de RPG."
+  },
+  {
+    "source_id": "pedro",
+    "target_id": "teteu",
+    "relation_type": "frenemy",
+    "affinity": 40,
+    "friction": 0.55,
+    "gossip_trust": 0.5,
+    "shared_lore": "Pedro tá quase provando que o Teteu é o admin do Spotted."
+  },
+  {
+    "source_id": "helena",
+    "target_id": "lucas",
+    "relation_type": "friend",
+    "affinity": 70,
+    "friction": 0.15,
+    "gossip_trust": 0.5,
+    "shared_lore": "Parceiros de laboratório e discussões técnicas."
+  },
+  {
+    "source_id": "helena",
+    "target_id": "bia",
+    "relation_type": "acquaintance",
+    "affinity": 10,
+    "friction": 0.5,
+    "gossip_trust": 0.1,
+    "shared_lore": "Helena estuda as fofocas da Bia como fenômeno sociológico."
+  },
+  {
+    "source_id": "nina",
+    "target_id": "helena",
+    "relation_type": "friend",
+    "affinity": 75,
+    "friction": 0.15,
+    "gossip_trust": 0.6,
+    "shared_lore": "Únicas pessoas que entregam tudo antes do prazo."
+  },
+  {
+    "source_id": "teteu",
+    "target_id": "caio",
+    "relation_type": "frenemy",
+    "affinity": 25,
+    "friction": 0.65,
+    "gossip_trust": 0.2,
+    "shared_lore": "Teteu vive zoando a marra do Caio nos comentários."
+  }
+]

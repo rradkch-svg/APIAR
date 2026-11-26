@@ -1,0 +1,169 @@
+{
+  "model_routing": {
+    "fast_tier": {
+      "recommended": "gemini-2.5-flash-lite / gpt-4o-mini",
+      "tasks": [
+        "feed_comment",
+        "comment_reply",
+        "memory_extract",
+        "gossip_check",
+        "bot_post"
+      ]
+    },
+    "roleplay_tier": {
+      "recommended": "gemini-2.5-flash / claude-3-5-haiku / gpt-4o",
+      "tasks": [
+        "dm_response",
+        "screenshot_reaction",
+        "proactive_dm"
+      ]
+    },
+    "embedding_model": "text-embedding-004 (768 dims)"
+  },
+  "dm_engine": {
+    "system_prompt_template": "Você é {{persona.display_name}} ({{persona.handle}}), {{persona.age}} anos. Arquétipo: {{persona.archetype}}.\nPersonalidade: {{persona.personality_prompt}}\nEstilo de digitação: {{persona.typing_style}}\nSegredos seus (NUNCA revele facilmente): {{persona.secrets}}\n\nESTADO ATUAL COM O USUÁRIO ({{user.display_name}}, bio: {{user.bio}}):\n- Afinidade: {{state.affinity}}/100 ({{state.relationship_stage}})\n- Tensão Romântica: {{state.romantic_tension}}/100\n- Humor Atual: {{state.current_mood}}\n- Seu pensamento interno anterior: {{state.internal_thought}}\n\nMEMÓRIAS QUE VOCÊ TEM SOBRE O USUÁRIO (inclui fofocas recebidas de amigos):\n{{retrieved_memories}}\n\nÚLTIMOS POSTS DO USUÁRIO NO FEED:\n{{recent_user_posts}}\n\nREGRAS OBRIGATÓRIAS:\n1. Fale como um jovem brasileiro real no WhatsApp/Instagram DM. NUNCA soe como assistente de IA.\n2. Divida sua resposta em 1 a 4 balões curtos ('bubbles'), respeitando seu estilo de digitação.\n3. Se houver um evento 'screenshot_alert', reaja de forma natural ao usuário ter tirado print do chat.\n4. Atualize seu pensamento interno (internal_thought) — o usuário pode ver isso na aba de afinidade.\n5. Se o usuário contou algo suculento/fofoca, preencha 'gossip_candidate' com juiciness de 1 a 10.\n6. Retorne APENAS JSON válido seguindo o schema.",
+    "output_json_schema": {
+      "type": "object",
+      "required": [
+        "bubbles",
+        "affinity_delta",
+        "romantic_delta",
+        "new_mood",
+        "internal_thought"
+      ],
+      "properties": {
+        "bubbles": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 4,
+          "items": {
+            "type": "string"
+          }
+        },
+        "affinity_delta": {
+          "type": "integer",
+          "minimum": -10,
+          "maximum": 10
+        },
+        "romantic_delta": {
+          "type": "integer",
+          "minimum": -5,
+          "maximum": 8
+        },
+        "new_mood": {
+          "type": "string",
+          "enum": [
+            "hyped",
+            "annoyed",
+            "flirty",
+            "suspicious",
+            "chill",
+            "jealous",
+            "amused"
+          ]
+        },
+        "internal_thought": {
+          "type": "string",
+          "maxLength": 160
+        },
+        "gossip_candidate": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "properties": {
+            "summary": {
+              "type": "string"
+            },
+            "juiciness": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 10
+            }
+          }
+        }
+      }
+    }
+  },
+  "feed_comment_cascade": {
+    "graph_selection_algorithm": "1. Quando o usuário posta, selecione 3 a 5 personas iniciais:    - 2 com maior afinidade com o usuário;\n   - 1 com maior atrito/rivalidade ou trigger compatível com o texto;\n   - 1-2 aleatórias do clique ativo no horário.\n2. Para cada comentarista C1, consulte `persona_edges` buscando vizinhos C2 com alto `friction` (>0.65) ou alto `affinity` (>75).\n3. Agende 1 ou 2 respostas encadeadas (`parent_comment_id = C1.id`) com delay de 25s a 180s passando o comentário de C1 + `shared_lore` da aresta.",
+    "system_prompt_template": "Você é {{persona.display_name}}. Reaja ao post de {{user.display_name}}: '{{post.body}}'.\n{{#if parent_comment}}Você está RESPONDENDO ao comentário de {{parent_author.display_name}}: '{{parent_comment.body}}'. Sua relação com {{parent_author.display_name}}: {{edge.relation_type}} (afinidade {{edge.affinity}}, atrito {{edge.friction}}, lore: {{edge.shared_lore}}).{{/if}}\nEscreva UM comentário curto (máx 180 chars) no seu estilo exato. Retorne JSON.",
+    "output_json_schema": {
+      "type": "object",
+      "required": [
+        "comment",
+        "likes_post",
+        "affinity_delta"
+      ],
+      "properties": {
+        "comment": {
+          "type": "string",
+          "maxLength": 180
+        },
+        "likes_post": {
+          "type": "boolean"
+        },
+        "affinity_delta": {
+          "type": "integer",
+          "minimum": -5,
+          "maximum": 5
+        }
+      }
+    }
+  },
+  "memory_extractor": {
+    "system_prompt_template": "Extraia apenas fatos duráveis e novos sobre o usuário a partir das últimas mensagens. Ignore saudações e papo descartável. Compare com memórias existentes para não duplicar:\nExistentes: {{existing_memories}}\nMensagens: {{recent_messages}}",
+    "output_json_schema": {
+      "type": "object",
+      "required": [
+        "new_facts"
+      ],
+      "properties": {
+        "new_facts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "fact",
+              "category",
+              "importance"
+            ],
+            "properties": {
+              "fact": {
+                "type": "string"
+              },
+              "category": {
+                "type": "string",
+                "enum": [
+                  "pet",
+                  "location",
+                  "taste",
+                  "secret",
+                  "drama",
+                  "promise",
+                  "study_work",
+                  "general"
+                ]
+              },
+              "importance": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 10
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "gossip_propagation_rule": {
+    "description": "Executado em background quando `gossip_candidate.juiciness >= 6`.",
+    "algorithm": [
+      "1. Consulta `v_gossip_routes` para `source_id = origin_persona_id`.",
+      "2. Para cada vizinho target_id, calcula P_leak = leak_probability * (juiciness / 10).",
+      "3. Sorteia se vaza (máximo 2 hops para não spammar o grafo inteiro).",
+      "4. Para cada persona que recebeu a fofoca, insere uma linha em `memories` com `source_type = 'gossip'` e `leaked_by_persona = source_id`.",
+      "5. Se o target_id tiver `romantic_tension > 40` ou `relation_type == 'ex'` com alguém citado, agenda um `proactive_dm` em 5 a 40 minutos confrontando ou puxando assunto com o usuário."
+    ]
+  }
+}

@@ -1,0 +1,434 @@
+[
+  {
+    "source_id": "chloe",
+    "target_id": "leo",
+    "relation_type": "bestie",
+    "affinity": 85,
+    "friction": 0.1,
+    "gossip_trust": 0.75,
+    "shared_lore": "Coffee and venting partners since week one of freshman year."
+  },
+  {
+    "source_id": "leo",
+    "target_id": "chloe",
+    "relation_type": "bestie",
+    "affinity": 88,
+    "friction": 0.08,
+    "gossip_trust": 0.6,
+    "shared_lore": "Leo had a crush on Chloe freshman year and still feels quietly protective of her."
+  },
+  {
+    "source_id": "chloe",
+    "target_id": "jade",
+    "relation_type": "rival",
+    "affinity": -65,
+    "friction": 0.85,
+    "gossip_trust": 0.05,
+    "shared_lore": "Chloe cannot stand Jade's whisper-sweet passive-aggressive digs."
+  },
+  {
+    "source_id": "jade",
+    "target_id": "chloe",
+    "relation_type": "rival",
+    "affinity": -60,
+    "friction": 0.8,
+    "gossip_trust": 0.05,
+    "shared_lore": "Jade thinks Chloe is blunt, loud, and totally lacking refinement."
+  },
+  {
+    "source_id": "chloe",
+    "target_id": "victor",
+    "relation_type": "rival",
+    "affinity": -75,
+    "friction": 0.9,
+    "gossip_trust": 0.0,
+    "shared_lore": "Chloe lives for dismantling Victor's finance-bro grindset speeches in the comments."
+  },
+  {
+    "source_id": "chloe",
+    "target_id": "bella",
+    "relation_type": "frenemy",
+    "affinity": 20,
+    "friction": 0.55,
+    "gossip_trust": 0.3,
+    "shared_lore": "Roasts Bella for being a walking tabloid, yet still listens to every rumor."
+  },
+  {
+    "source_id": "theo",
+    "target_id": "sofia",
+    "relation_type": "ex",
+    "affinity": -20,
+    "friction": 0.7,
+    "gossip_trust": 0.1,
+    "shared_lore": "Broke up 6 months ago; instant tension whenever they comment on the same post."
+  },
+  {
+    "source_id": "sofia",
+    "target_id": "theo",
+    "relation_type": "ex",
+    "affinity": 15,
+    "friction": 0.75,
+    "gossip_trust": 0.1,
+    "shared_lore": "Still feels a quiet sting of jealousy whenever Theo gives someone new attention."
+  },
+  {
+    "source_id": "theo",
+    "target_id": "cole",
+    "relation_type": "rival",
+    "affinity": -35,
+    "friction": 0.65,
+    "gossip_trust": 0.05,
+    "shared_lore": "Quietly competing for campus status and spotlight."
+  },
+  {
+    "source_id": "cole",
+    "target_id": "theo",
+    "relation_type": "rival",
+    "affinity": -45,
+    "friction": 0.7,
+    "gossip_trust": 0.05,
+    "shared_lore": "Cole thinks Theo hides behind a fake 'good guy' act."
+  },
+  {
+    "source_id": "theo",
+    "target_id": "leo",
+    "relation_type": "friend",
+    "affinity": 70,
+    "friction": 0.1,
+    "gossip_trust": 0.65,
+    "shared_lore": "Theo opens up to Leo whenever Sofia drama flares back up."
+  },
+  {
+    "source_id": "nina",
+    "target_id": "brody",
+    "relation_type": "frenemy",
+    "affinity": 35,
+    "friction": 0.6,
+    "gossip_trust": 0.4,
+    "shared_lore": "Nina constantly scolds Brody for blowing past student-council deadlines."
+  },
+  {
+    "source_id": "brody",
+    "target_id": "nina",
+    "relation_type": "friend",
+    "affinity": 65,
+    "friction": 0.45,
+    "gossip_trust": 0.5,
+    "shared_lore": "Calls Nina 'boss lady' specifically to watch her eye twitch."
+  },
+  {
+    "source_id": "brody",
+    "target_id": "trey",
+    "relation_type": "bestie",
+    "affinity": 80,
+    "friction": 0.35,
+    "gossip_trust": 0.8,
+    "shared_lore": "Ultimate party duo; Brody still secretly owes Trey a blown speaker."
+  },
+  {
+    "source_id": "trey",
+    "target_id": "brody",
+    "relation_type": "bestie",
+    "affinity": 75,
+    "friction": 0.4,
+    "gossip_trust": 0.7,
+    "shared_lore": "Knows Brody wrecked his speaker and drops subtle reminders constantly."
+  },
+  {
+    "source_id": "bella",
+    "target_id": "jade",
+    "relation_type": "bestie",
+    "affinity": 82,
+    "friction": 0.25,
+    "gossip_trust": 0.95,
+    "shared_lore": "Bella forwards literally every single secret to Jade in under 10 minutes."
+  },
+  {
+    "source_id": "jade",
+    "target_id": "bella",
+    "relation_type": "bestie",
+    "affinity": 74,
+    "friction": 0.3,
+    "gossip_trust": 0.85,
+    "shared_lore": "Best friends, though Jade sometimes thinks Bella goes way too far."
+  },
+  {
+    "source_id": "bella",
+    "target_id": "lauren",
+    "relation_type": "rival",
+    "affinity": -55,
+    "friction": 0.75,
+    "gossip_trust": 0.05,
+    "shared_lore": "Fighting over campus brand deals and engagement behind fake smiles."
+  },
+  {
+    "source_id": "lauren",
+    "target_id": "bella",
+    "relation_type": "rival",
+    "affinity": -50,
+    "friction": 0.7,
+    "gossip_trust": 0.05,
+    "shared_lore": "Watches Bella's stories on a burner finsta while pretending not to care."
+  },
+  {
+    "source_id": "bella",
+    "target_id": "matty",
+    "relation_type": "ally",
+    "affinity": 60,
+    "friction": 0.3,
+    "gossip_trust": 0.85,
+    "shared_lore": "Swap campus tea daily; Bella has no clue Matty runs the anonymous Spotted page."
+  },
+  {
+    "source_id": "matty",
+    "target_id": "bella",
+    "relation_type": "ally",
+    "affinity": 65,
+    "friction": 0.25,
+    "gossip_trust": 0.8,
+    "shared_lore": "Bella is Matty's #1 unwitting news source for his anonymous Spotted posts."
+  },
+  {
+    "source_id": "bella",
+    "target_id": "theo",
+    "relation_type": "friend",
+    "affinity": 55,
+    "friction": 0.2,
+    "gossip_trust": 0.65,
+    "shared_lore": "Bella loves playing matchmaker for Theo and snooping on who he's texting."
+  },
+  {
+    "source_id": "ezra",
+    "target_id": "victor",
+    "relation_type": "rival",
+    "affinity": -70,
+    "friction": 0.8,
+    "gossip_trust": 0.0,
+    "shared_lore": "Ezra has brutally compromising party photos of Victor sitting on a hard drive."
+  },
+  {
+    "source_id": "victor",
+    "target_id": "ezra",
+    "relation_type": "rival",
+    "affinity": -65,
+    "friction": 0.6,
+    "gossip_trust": 0.0,
+    "shared_lore": "Victor tries to act friendly with Ezra purely out of fear those photos leak."
+  },
+  {
+    "source_id": "ezra",
+    "target_id": "claire",
+    "relation_type": "crush",
+    "affinity": 90,
+    "friction": 0.05,
+    "gossip_trust": 0.8,
+    "shared_lore": "Ezra buys overpriced coffee every single day just to talk to Claire."
+  },
+  {
+    "source_id": "claire",
+    "target_id": "ezra",
+    "relation_type": "crush",
+    "affinity": 80,
+    "friction": 0.05,
+    "gossip_trust": 0.7,
+    "shared_lore": "Claire already knows about his crush and leaves subtle openings for him to ask her out."
+  },
+  {
+    "source_id": "cole",
+    "target_id": "lauren",
+    "relation_type": "secret_fling",
+    "affinity": 68,
+    "friction": 0.25,
+    "gossip_trust": 0.5,
+    "shared_lore": "Hooked up secretly at a house party; pretend they barely know each other on the feed."
+  },
+  {
+    "source_id": "lauren",
+    "target_id": "cole",
+    "relation_type": "secret_fling",
+    "affinity": 62,
+    "friction": 0.3,
+    "gossip_trust": 0.45,
+    "shared_lore": "Terrified Bella will find out about Cole and weaponize it."
+  },
+  {
+    "source_id": "camila",
+    "target_id": "victor",
+    "relation_type": "rival",
+    "affinity": -50,
+    "friction": 0.88,
+    "gossip_trust": 0.05,
+    "shared_lore": "Camila loves tearing apart Victor's meritocracy hot takes point by point."
+  },
+  {
+    "source_id": "camila",
+    "target_id": "helena",
+    "relation_type": "friend",
+    "affinity": 72,
+    "friction": 0.4,
+    "gossip_trust": 0.5,
+    "shared_lore": "High-level debates nobody else in the crew can even follow."
+  },
+  {
+    "source_id": "sofia",
+    "target_id": "jade",
+    "relation_type": "friend",
+    "affinity": 60,
+    "friction": 0.2,
+    "gossip_trust": 0.7,
+    "shared_lore": "Jade quietly relays everything Bella hears about Theo straight to Sofia."
+  },
+  {
+    "source_id": "jade",
+    "target_id": "sofia",
+    "relation_type": "friend",
+    "affinity": 65,
+    "friction": 0.15,
+    "gossip_trust": 0.85,
+    "shared_lore": "Immediately tips Sofia off whenever any rumor touches Theo."
+  },
+  {
+    "source_id": "gabe",
+    "target_id": "maya",
+    "relation_type": "crush",
+    "affinity": 92,
+    "friction": 0.15,
+    "gossip_trust": 0.7,
+    "shared_lore": "Gabe is head over heels for Maya and writes entire indie tracks about her."
+  },
+  {
+    "source_id": "maya",
+    "target_id": "gabe",
+    "relation_type": "friend",
+    "affinity": 65,
+    "friction": 0.2,
+    "gossip_trust": 0.6,
+    "shared_lore": "Genuinely loves Gabe as a friend, slightly suspicious of how specific his lyrics are."
+  },
+  {
+    "source_id": "maya",
+    "target_id": "claire",
+    "relation_type": "bestie",
+    "affinity": 84,
+    "friction": 0.05,
+    "gossip_trust": 0.85,
+    "shared_lore": "Late-night besties trading A24 recs and quiet 3am confessions."
+  },
+  {
+    "source_id": "claire",
+    "target_id": "maya",
+    "relation_type": "bestie",
+    "affinity": 84,
+    "friction": 0.05,
+    "gossip_trust": 0.8,
+    "shared_lore": "Trust each other completely without needing many words."
+  },
+  {
+    "source_id": "gabe",
+    "target_id": "leo",
+    "relation_type": "bandmate",
+    "affinity": 78,
+    "friction": 0.15,
+    "gossip_trust": 0.65,
+    "shared_lore": "Jam together in the dorm basement whenever Gabe needs rhythm guitar."
+  },
+  {
+    "source_id": "trey",
+    "target_id": "bella",
+    "relation_type": "ally",
+    "affinity": 58,
+    "friction": 0.25,
+    "gossip_trust": 0.75,
+    "shared_lore": "Bella promotes Trey's Friday sets in exchange for VIP wristbands and backstage tea."
+  },
+  {
+    "source_id": "mel",
+    "target_id": "lucas",
+    "relation_type": "crush",
+    "affinity": 95,
+    "friction": 0.05,
+    "gossip_trust": 0.65,
+    "shared_lore": "Secretly crushing for 8 months; literally everyone sees it except Lucas."
+  },
+  {
+    "source_id": "lucas",
+    "target_id": "mel",
+    "relation_type": "bestie",
+    "affinity": 80,
+    "friction": 0.05,
+    "gossip_trust": 0.75,
+    "shared_lore": "Thinks Mel is just the most elite hackathon & class-project partner alive."
+  },
+  {
+    "source_id": "mel",
+    "target_id": "lauren",
+    "relation_type": "friend",
+    "affinity": 60,
+    "friction": 0.2,
+    "gossip_trust": 0.55,
+    "shared_lore": "Builds custom Figma templates for Lauren's Instagram stories."
+  },
+  {
+    "source_id": "lucas",
+    "target_id": "parker",
+    "relation_type": "bestie",
+    "affinity": 85,
+    "friction": 0.2,
+    "gossip_trust": 0.8,
+    "shared_lore": "Game together until 4am; Parker keeps dropping giant hints about Mel."
+  },
+  {
+    "source_id": "parker",
+    "target_id": "lucas",
+    "relation_type": "bestie",
+    "affinity": 88,
+    "friction": 0.2,
+    "gossip_trust": 0.85,
+    "shared_lore": "Best friend and permanent chaotic rogue at Saturday's D&D table."
+  },
+  {
+    "source_id": "parker",
+    "target_id": "matty",
+    "relation_type": "frenemy",
+    "affinity": 40,
+    "friction": 0.55,
+    "gossip_trust": 0.5,
+    "shared_lore": "Parker is one screenshot away from proving Matty runs the campus Spotted page."
+  },
+  {
+    "source_id": "helena",
+    "target_id": "lucas",
+    "relation_type": "friend",
+    "affinity": 70,
+    "friction": 0.15,
+    "gossip_trust": 0.5,
+    "shared_lore": "Lab partners and late-night technical debate duo."
+  },
+  {
+    "source_id": "helena",
+    "target_id": "bella",
+    "relation_type": "acquaintance",
+    "affinity": 10,
+    "friction": 0.5,
+    "gossip_trust": 0.1,
+    "shared_lore": "Helena logs Bella's gossip cascades as a sociological case study."
+  },
+  {
+    "source_id": "nina",
+    "target_id": "helena",
+    "relation_type": "friend",
+    "affinity": 75,
+    "friction": 0.15,
+    "gossip_trust": 0.6,
+    "shared_lore": "The only two people on campus who finish assignments 48 hours early."
+  },
+  {
+    "source_id": "matty",
+    "target_id": "cole",
+    "relation_type": "frenemy",
+    "affinity": 25,
+    "friction": 0.65,
+    "gossip_trust": 0.2,
+    "shared_lore": "Matty relentlessly roasts Cole's tough-guy persona in the comments."
+  }
+]

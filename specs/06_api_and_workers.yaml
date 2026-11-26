@@ -1,0 +1,73 @@
+openapi: 3.1.0
+info:
+  title: AI Social Network API (Circle / Orbit / Charm Architecture)
+  version: 1.0.0
+
+endpoints:
+  # Onboarding & Profile
+  - method: POST
+    path: /api/v1/onboarding
+    description: Cria usuário, inicializa 22 linhas em `user_persona_state` e dispara 2 DMs de boas-vindas agendadas.
+    body: { display_name: string, handle: string, bio: string, context_tag: string }
+
+  - method: GET
+    path: /api/v1/me
+    description: Retorna perfil, barra de energia (com reset automático de 24h) e contadores de não lidas.
+
+  # Feed
+  - method: GET
+    path: /api/v1/feed
+    description: Retorna posts paginados com comentários aninhados. Executa Lazy Generation se o usuário estiver há >4h sem novo post de bot.
+
+  - method: POST
+    path: /api/v1/posts
+    description: Consome 1 energia, salva post (com descrição de imagem via Vision se houver), agenda cascata de comentários/respostas no grafo via `scheduled_jobs` e extrai memórias.
+    body: { body: string, image_url: string? }
+
+  # Direct Messages
+  - method: GET
+    path: /api/v1/dms
+    description: Lista inbox ordenada por última mensagem com badge `unread_count` e `internal_thought` resumido.
+
+  - method: GET
+    path: /api/v1/dms/{persona_id}
+    description: Retorna histórico paginado e zera `unread_count`.
+
+  - method: POST
+    path: /api/v1/dms/{persona_id}/messages
+    description: >
+      Consome 1 energia, salva mensagem do usuário, busca Top-5 memórias via pgvector + último post do feed,
+      chama `dm_engine`, emite evento WebSocket `typing:start`, entrega cada bubble com atraso proporcional ao tamanho do texto,
+      atualiza `user_persona_state` e agenda `memory_extract` + `gossip_leak` se aplicável.
+    body: { body: string, message_type: "text" | "screenshot_alert" }
+
+  # Social Graph & Relationship Inspector (Aba "Turma")
+  - method: GET
+    path: /api/v1/graph/crew
+    description: Retorna os 22 personagens com afinidade, humor, pensamento interno, memórias visíveis e suas principais conexões no grafo.
+
+  - method: GET
+    path: /api/v1/graph/network
+    description: Retorna nós (personas + user) e arestas (`persona_edges` + `user_persona_state`) para visualização interativa de grafo no frontend.
+
+  # Debug / Demo Accelerator
+  - method: POST
+    path: /api/v1/dev/simulate-time
+    description: Avança relógio lógico em +24h (reseta energia, gera 2 posts de bots e dispara 2-3 DMs proativas baseadas em memória/fofoca).
+
+realtime_websocket_events:
+  server_to_client:
+    - "typing:start { persona_id }"
+    - "typing:stop { persona_id }"
+    - "dm:bubble { persona_id, message }"
+    - "feed:comment { post_id, comment }"
+    - "feed:likes_bump { post_id, likes_count }"
+    - "notification:push { title, body, route }"
+
+background_workers:
+  - name: job_poller_worker
+    interval: "every 5 seconds"
+    action: "SELECT ... FROM scheduled_jobs WHERE status='pending' AND run_at <= NOW() FOR UPDATE SKIP LOCKED"
+  - name: proactive_reengagement_cron
+    interval: "every 3 hours"
+    action: "Para usuários ativos nas últimas 48h, escolhe 1 persona com afinidade > 35 ou fofoca pendente e agenda `proactive_dm` ou `bot_post`."
