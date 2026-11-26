@@ -1,0 +1,3 @@
+{
+  "install": "([ -f .env ] || cp .env.example .env) && npm ci --legacy-peer-deps --no-audit --no-fund && npm run db:seed"
+}
