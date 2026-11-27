@@ -38,7 +38,7 @@ export async function GET() {
     const user = await getActiveUser();
     if (!user) return NextResponse.json({ error: "Onboarding required" }, { status: 401 });
 
-    const [personasRes, edgesRes, memoriesRes, gossipRes] = await Promise.all([
+    const [personasRes, edgeCountRes, memoriesRes, gossipRes] = await Promise.all([
       dbQuery<CrewPersonaRow>(
         `SELECT
            p.id, p.display_name, p.handle, p.clique, p.archetype, p.avatar_url,
@@ -55,24 +55,7 @@ export async function GET() {
          ORDER BY ups.affinity DESC, p.display_name ASC`,
         [user.id]
       ),
-      dbQuery<{
-        source_id: string;
-        target_id: string;
-        target_name: string;
-        target_accent: string;
-        relation_type: string;
-        affinity: number;
-        friction: number;
-        gossip_trust: number;
-        shared_lore: string;
-      }>(
-        `SELECT
-           e.source_id, e.target_id, p.display_name AS target_name, p.accent_color AS target_accent,
-           e.relation_type, e.affinity, e.friction, e.gossip_trust, e.shared_lore
-         FROM persona_edges e
-         JOIN personas p ON p.id = e.target_id
-         ORDER BY ABS(e.affinity) DESC, e.friction DESC`
-      ),
+      dbQuery<{ count: string }>("SELECT COUNT(*)::text AS count FROM persona_edges"),
       dbQuery<{
         id: string;
         persona_id: string;
@@ -107,13 +90,6 @@ export async function GET() {
       ),
     ]);
 
-    const edgesBySource = new Map<string, typeof edgesRes.rows>();
-    for (const e of edgesRes.rows) {
-      const list = edgesBySource.get(e.source_id) || [];
-      list.push(e);
-      edgesBySource.set(e.source_id, list);
-    }
-
     const memoriesByPersona = new Map<string, typeof memoriesRes.rows>();
     for (const m of memoriesRes.rows) {
       const list = memoriesByPersona.get(m.persona_id) || [];
@@ -121,19 +97,19 @@ export async function GET() {
       memoriesByPersona.set(m.persona_id, list);
     }
 
+    // Internal social graph edges remain server-side only (never exposed to the client UI)
     const crew = personasRes.rows.map((p) => ({
       ...p,
       is_online: isPersonaOnline(p.activity_schedule, user.current_slot),
       media_tier: getMediaUnlockTier(p.affinity, p.romantic_tension),
       memories: (memoriesByPersona.get(p.id) || []).slice(0, 12),
-      connections: edgesBySource.get(p.id) || [],
     }));
 
     return NextResponse.json({
       crew,
       gossip_events: gossipRes.rows,
       total_personas: crew.length,
-      total_edges: edgesRes.rows.length,
+      total_edges: Number(edgeCountRes.rows[0]?.count ?? 0),
       current_day: user.current_day,
       current_slot: user.current_slot,
     });

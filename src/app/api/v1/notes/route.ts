@@ -35,7 +35,17 @@ export async function GET() {
        FROM dm_notes n
        LEFT JOIN personas p ON p.id = n.author_persona_id
        LEFT JOIN user_persona_state ups ON ups.persona_id = n.author_persona_id AND ups.user_id = $1
-       WHERE n.user_id = $1 AND n.expires_at > NOW()
+       WHERE n.user_id = $1
+         AND n.expires_at > NOW()
+         AND (
+           n.author_type = 'user'
+           OR ups.user_follows = TRUE
+           OR ups.persona_follows_back = TRUE
+           OR EXISTS (
+             SELECT 1 FROM dm_messages dm
+             WHERE dm.user_id = $1 AND dm.persona_id = n.author_persona_id
+           )
+         )
        ORDER BY
          CASE WHEN n.author_type = 'user' THEN 0 ELSE 1 END,
          COALESCE(ups.affinity, 0) DESC,

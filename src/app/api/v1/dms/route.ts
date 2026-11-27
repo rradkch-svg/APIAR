@@ -70,7 +70,7 @@ export async function GET() {
          ) AS has_active_hook
        FROM personas p
        JOIN user_persona_state ups ON ups.persona_id = p.id AND ups.user_id = $1
-       LEFT JOIN LATERAL (
+       JOIN LATERAL (
          SELECT body, message_type, sender_type, created_at
          FROM dm_messages
          WHERE user_id = $1 AND persona_id = p.id
@@ -79,8 +79,7 @@ export async function GET() {
        ) lm ON TRUE
        WHERE p.is_active = TRUE
        ORDER BY
-         (lm.created_at IS NULL) ASC,
-         lm.created_at DESC NULLS LAST,
+         lm.created_at DESC,
          ups.affinity DESC`,
       [user.id]
     );

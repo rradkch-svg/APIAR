@@ -169,8 +169,7 @@ export default function DmsInboxPage() {
     return t.display_name.toLowerCase().includes(q) || t.handle.toLowerCase().includes(q);
   });
 
-  const activeChats = filtered.filter((t) => Boolean(t.last_message_at));
-  const otherStudents = filtered.filter((t) => !t.last_message_at);
+  const activeChats = filtered;
 
   const username = (me?.user?.handle || "Messages").replace(/^@/, "");
   const userInitial = (me?.user?.display_name || "Y").slice(0, 1).toUpperCase();
@@ -356,20 +355,26 @@ export default function DmsInboxPage() {
         <>
           <div className="px-4 pt-3 pb-1 text-[14px] font-semibold text-white">Messages</div>
           {activeChats.length === 0 ? (
-            <div className="px-4 py-5 text-[13px] text-[#8E8E93]">
-              No conversations yet. Tap anyone below or reply to a Story or Note to break the ice.
+            <div className="flex flex-col items-center px-6 py-12 text-center">
+              <p className="text-[15px] font-semibold text-white">
+                {query.trim() ? "No matching chats" : "No messages yet"}
+              </p>
+              <p className="mt-1.5 max-w-[260px] text-[13px] leading-relaxed text-[#8E8E93]">
+                {query.trim()
+                  ? "Only active conversations appear in your inbox."
+                  : "Visit someone's profile on Explore or reply to a Story to start a conversation."}
+              </p>
+              {!query.trim() && (
+                <Link
+                  href="/crew"
+                  className="mt-4 rounded-full bg-[#5E5CE6] px-5 py-2 text-[13px] font-semibold text-white"
+                >
+                  Explore Campus
+                </Link>
+              )}
             </div>
           ) : (
             <div>{activeChats.map(renderThreadRow)}</div>
-          )}
-
-          {otherStudents.length > 0 && (
-            <>
-              <div className="mt-2 border-t border-white/[0.08] px-4 pt-3 pb-1 text-[13px] font-semibold text-[#8E8E93]">
-                Campus Directory
-              </div>
-              <div>{otherStudents.map(renderThreadRow)}</div>
-            </>
           )}
         </>
       )}

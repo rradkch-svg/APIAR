@@ -39,16 +39,6 @@ export interface CrewMemberDetail {
     leaked_by_persona: string | null;
     created_at: string;
   }>;
-  connections: Array<{
-    target_id: string;
-    target_name: string;
-    target_accent: string;
-    relation_type: string;
-    affinity: number;
-    friction: number;
-    gossip_trust: number;
-    shared_lore: string;
-  }>;
 }
 
 interface PersonaDrawerProps {
@@ -60,7 +50,7 @@ interface PersonaDrawerProps {
 export function PersonaDrawer({ persona, onClose, onFollowChanged }: PersonaDrawerProps) {
   const dialogRef = useRef<HTMLDialogElement | null>(null);
   const titleId = useId();
-  const [tab, setTab] = useState<"posts" | "insights" | "connections">("posts");
+  const [tab, setTab] = useState<"posts" | "insights">("posts");
   const [personaPosts, setPersonaPosts] = useState<FeedPostItem[]>([]);
   const [following, setFollowing] = useState(false);
   const [closeFriend, setCloseFriend] = useState(false);
@@ -182,10 +172,10 @@ export function PersonaDrawer({ persona, onClose, onFollowChanged }: PersonaDraw
                     <div className="text-[11px] text-[#8E8E93]">posts</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-[15px] font-bold tabular-nums text-white">
-                      {persona.connections.length}
+                    <div className="text-[15px] font-bold capitalize text-white">
+                      {persona.clique}
                     </div>
-                    <div className="text-[11px] text-[#8E8E93]">mutuals</div>
+                    <div className="text-[11px] text-[#8E8E93]">circle</div>
                   </div>
                   <div className="text-center">
                     <div className="text-[15px] font-bold capitalize text-white">
@@ -236,8 +226,8 @@ export function PersonaDrawer({ persona, onClose, onFollowChanged }: PersonaDraw
             {cfMessage && <p className="mt-2 text-[12px] text-[#8E8E93]">{cfMessage}</p>}
           </div>
 
-          {/* 3 Clean Underline Tabs: Posts | Insights | Connections */}
-          <div className="grid grid-cols-3 border-y border-white/[0.08] text-[13px] font-semibold">
+          {/* 2 Clean Underline Tabs: Posts | Insights (Social Graph stays internal) */}
+          <div className="grid grid-cols-2 border-y border-white/[0.08] text-[13px] font-semibold">
             <button
               type="button"
               onClick={() => setTab("posts")}
@@ -260,17 +250,6 @@ export function PersonaDrawer({ persona, onClose, onFollowChanged }: PersonaDraw
               }`}
             >
               Insights
-            </button>
-            <button
-              type="button"
-              onClick={() => setTab("connections")}
-              className={`py-2.5 text-center transition ${
-                tab === "connections"
-                  ? "border-b-2 border-white text-white"
-                  : "text-[#8E8E93] hover:text-white"
-              }`}
-            >
-              Graph ({persona.connections.length})
             </button>
           </div>
 
@@ -303,7 +282,7 @@ export function PersonaDrawer({ persona, onClose, onFollowChanged }: PersonaDraw
                 ))}
               </div>
             )
-          ) : tab === "insights" ? (
+          ) : (
             <div className="space-y-3 p-4">
               {/* Relationship Metrics */}
               <div className="grid grid-cols-3 gap-2 rounded-2xl bg-[#18191E] p-3 text-center">
@@ -396,22 +375,6 @@ export function PersonaDrawer({ persona, onClose, onFollowChanged }: PersonaDraw
                   ))}
                 </div>
               )}
-            </div>
-          ) : (
-            <div className="p-4">
-              <div className="divide-y divide-white/[0.08] rounded-2xl bg-[#18191E]">
-                {persona.connections.map((edge) => (
-                  <div key={edge.target_id} className="px-3.5 py-3">
-                    <div className="flex items-center justify-between text-[14px]">
-                      <span className="font-semibold text-white">{edge.target_name}</span>
-                      <span className="text-[12px] capitalize text-[#8E8E93]">
-                        {edge.relation_type.replace("_", " ")}
-                      </span>
-                    </div>
-                    <p className="mt-1 text-[13px] text-[#8E8E93]">{edge.shared_lore}</p>
-                  </div>
-                ))}
-              </div>
             </div>
           )}
         </div>

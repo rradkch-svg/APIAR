@@ -126,11 +126,16 @@ async function run() {
     assert.equal(p.romantic_tension, 0, `${p.id} must start at romantic_tension 0`);
     assert.equal(p.relationship_stage, "stranger", `${p.id} must start as stranger (NOT rival!)`);
     assert.ok(p.avatar_url.endsWith(".jpg"), `${p.id} avatar must be real .jpg`);
+    assert.equal("connections" in p, false, `${p.id} must NOT expose internal social graph edges to client`);
   }
+
+  const dmsCold = await api<{ threads: unknown[] }>("/api/v1/dms");
+  assert.equal(dmsCold.status, 200);
+  assert.equal(dmsCold.data.threads.length, 0, "DM inbox MUST start empty (no all-22 strangers dump!)");
 
   const weDay1 = await api<{ events: unknown[] }>("/api/v1/world-events");
   assert.equal(weDay1.data.events.length, 0, "Day 1 cold start MUST NOT generate stranger invites!");
-  console.log("  PASS: All 22 personas at 0/0/0 stranger, 0 followers/following, 0 premature invites!");
+  console.log("  PASS: All 22 personas at 0/0/0 stranger, 0 followers/following, 0 DMs in inbox, hidden graph, 0 premature invites!");
 
   // 2. Verify Photorealistic Feed Posts, Stories & DM Notes
   console.log("\n[2] Testing Photorealistic Feed, Stories, Notes, Like/Save/Comment/Share/Follow...");
@@ -203,15 +208,17 @@ async function run() {
   });
   assert.equal(createStory.status, 201);
 
-  // DM Notes: GET + POST
-  const notesRes = await api<{ notes: unknown[] }>("/api/v1/notes");
-  assert.equal(notesRes.status, 200);
-  assert.ok(notesRes.data.notes.length >= 5, "Expected active campus DM Notes");
+  // DM Notes: cold-start has no stranger notes; posting own note shows in /api/v1/notes
+  const notesCold = await api<{ notes: unknown[] }>("/api/v1/notes");
+  assert.equal(notesCold.status, 200);
+  assert.equal(notesCold.data.notes.length, 0, "Cold-start Notes must not expose unfollowed strangers");
   const myNote = await api("/api/v1/notes", {
     method: "POST",
     body: JSON.stringify({ body: "just got to campus, any good coffee recs?" }),
   });
   assert.equal(myNote.status, 201);
+  const notesAfter = await api<{ notes: unknown[] }>("/api/v1/notes");
+  assert.ok(notesAfter.data.notes.length >= 1, "User's own note must appear in /api/v1/notes");
 
   // Follow Leo -> Following count becomes 1
   const followRes = await api<{ user_follows: boolean }>("/api/v1/personas/leo/follow", {
@@ -255,13 +262,16 @@ async function run() {
   assert.equal(reactRes.status, 200);
   assert.equal(reactRes.data.reaction, "😂");
 
-  // Verify read_at populated on user's message
+  // Verify read_at populated on user's message & DM inbox now shows ONLY Cole (1 thread, not 22)
   const coleThread = await api<{ messages: Array<{ id: string; read_at: string | null }> }>(
     "/api/v1/dms/cole"
   );
   const userSent = coleThread.data.messages.find((m) => m.id === dmStranger.data.user_message.id);
   assert.ok(userSent?.read_at, "User DM message MUST have read_at ('Seen') populated after reply");
-  console.log("  PASS: Stranger gate, read receipt ('Seen'), and DM emoji reaction verified!");
+  const dmsAfterCole = await api<{ threads: Array<{ persona_id: string }> }>("/api/v1/dms");
+  assert.equal(dmsAfterCole.data.threads.length, 1, "DM inbox must show ONLY active threads (Cole)");
+  assert.equal(dmsAfterCole.data.threads[0].persona_id, "cole");
+  console.log("  PASS: Stranger gate, active-only DM inbox, read receipt ('Seen'), and DM emoji reaction verified!");
 
   // 4. Real 22-Voice Neural MP3 Audio + Tier 3 View-Once Photo & Video Note
   console.log("\n[4] Testing Real Neural MP3 Voice Notes (Maya @ Tier 2) & Video/View-Once (Theo @ Tier 3)...");
