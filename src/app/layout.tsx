@@ -9,12 +9,17 @@ const inter = Inter({
   display: "swap",
 });
 
+const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || "";
+
 export const metadata: Metadata = {
   title: "Vela",
   description: "Autonomous campus social network with 22 realistic college personas.",
-  manifest: "/manifest.json",
+  manifest: `${BASE_PATH}/manifest.json`,
   icons: {
-    icon: "/icon.svg",
+    icon: `${BASE_PATH}/icon.svg`,
+  },
+  other: {
+    google: "notranslate",
   },
 };
 
@@ -31,7 +36,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} dark`}>
+    <html lang="en" translate="no" className={`${inter.variable} dark notranslate`}>
       <body className="bg-[#0D0E12] text-white antialiased selection:bg-[#5E5CE6]/30">
         <RealtimeProvider>{children}</RealtimeProvider>
       </body>

@@ -7,7 +7,7 @@ import { AppShell } from "@/components/AppShell";
 import { useRealtime } from "@/components/RealtimeProvider";
 import { formatShortTime } from "@/components/PostCard";
 import type { ConflictResponse } from "@/components/EventInviteCard";
-import type { ActivityFeedItem } from "@/app/api/v1/activity/route";
+import type { ActivityFeedItem } from "@/lib/types/activity";
 
 export default function ActivityPage() {
   const { subscribe, refreshMe } = useRealtime();

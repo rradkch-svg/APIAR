@@ -1,5 +1,6 @@
 "use client";
 
+import "@/lib/static/install-shim";
 import React, { createContext, useCallback, useContext, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { X } from "lucide-react";

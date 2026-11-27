@@ -687,7 +687,9 @@ export default function FeedPage() {
                 "/photos/campus-quad-sun.jpg",
                 "/photos/sunset-rooftop.jpg",
                 "/photos/library-stacks.jpg",
-              ].map((preset) => (
+              ].map((rawPreset) => {
+                const preset = `${process.env.NEXT_PUBLIC_BASE_PATH || ""}${rawPreset}`;
+                return (
                 <button
                   key={preset}
                   type="button"
@@ -699,7 +701,8 @@ export default function FeedPage() {
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={preset} alt="Preset" className="h-full w-full object-cover" />
                 </button>
-              ))}
+                );
+              })}
             </div>
 
             <input
